@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>تسجيل الدخول - شرنج برنج</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/auth.css">
+</head>
+
+<body>
+
+  <!-- Navbar -->
+  <header class="navbar">
+    <div class="container nav-wrap">
+      <a class="brand" href="index.html">شرنج برنج</a>
+      <button class="nav-toggle" aria-label="القائمة">☰</button>
+      <nav class="nav">
+        <a href="index.html">الرئيسية</a>
+        <a href="about.html">من نحن</a>
+        <a href="services.html">خدماتنا</a>
+        <a href="articles.html">المقالات</a>
+        <a href="resources.html">المصادر</a>
+        <a href="contact.html">تواصل معنا</a>
+        <a href="login.html" class="active btn btn-primary"
+          style="padding: 0.5rem 1.5rem; color: white; margin-right: 1rem;">دخول</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Login Section -->
+  <section class="login-section">
+    <div class="login-container">
+      <div class="login-card">
+        <!-- Brand -->
+        <div class="login-brand">
+          <h2>تسجيل الدخول</h2>
+          <p>مرحباً بك مجدداً! سجل دخولك للمتابعة</p>
+        </div>
+
+        <!-- Login Form -->
+        <form id="loginForm">
+          <div class="form-group">
+            <label for="email">البريد الإلكتروني</label>
+            <input type="email" id="email" name="email" placeholder="name@example.com" required>
+            <span class="input-icon">✉</span>
+            <div class="error-message" id="emailError">الرجاء إدخال بريد إلكتروني صحيح</div>
+          </div>
+
+          <div class="form-group">
+            <label for="password">كلمة المرور</label>
+            <input type="password" id="password" name="password" placeholder="••••••••" required>
+            <span class="input-icon">🔒</span>
+            <div class="error-message" id="passwordError">كلمة المرور يجب أن تكون 6 أحرف على الأقل</div>
+          </div>
+
+          <div class="form-options">
+            <label class="remember-me">
+              <input type="checkbox" id="remember">
+              <span>تذكرني</span>
+            </label>
+            <a href="#" class="forgot-password">نسيت كلمة المرور؟</a>
+          </div>
+
+          <button type="submit" class="submit-btn">
+            <span>تسجيل الدخول</span>
+          </button>
+        </form>
+
+        <!-- Divider -->
+        <div class="divider">
+          <span>أو سجل دخولك عبر</span>
+        </div>
+
+        <!-- Social Login -->
+        <div class="social-login">
+          <button class="social-btn" type="button">
+            <span>🔵</span>
+            <span>Facebook</span>
+          </button>
+          <button class="social-btn" type="button">
+            <span>🔴</span>
+            <span>Google</span>
+          </button>
+        </div>
+
+        <!-- Sign Up Link -->
+        <div class="signup-link">
+          ليس لديك حساب؟ <a href="signup.html">سجّل الآن مجاناً</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="grid-3" style="text-align: right; margin-bottom: 2rem;">
+        <div>
+          <h3 style="color: white; margin-bottom: 1rem;">شرنج برنج</h3>
+          <p>منصتك الأولى للتوعية بالأمن السيبراني.</p>
+        </div>
+        <div>
+          <h4 style="color: white; margin-bottom: 1rem;">روابط سريعة</h4>
+          <ul style="line-height: 2.5;">
+            <li><a href="about.html">من نحن</a></li>
+            <li><a href="services.html">الخدمات</a></li>
+            <li><a href="contact.html">تواصل معنا</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 style="color: white; margin-bottom: 1rem;">تواصل معنا</h4>
+          <p>Email: info@shrenjprenj.com</p>
+          <p>Telegram: @shrenjprenj2</p>
+        </div>
+      </div>
+      <p style="border-top: 1px solid var(--gray-800); padding-top: 2rem;">© 2025 شرنج برنج — جميع الحقوق محفوظة</p>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+  <script>
+    // Enhanced Form Validation
+    const form = document.getElementById('loginForm');
+    const emailInput = document.getElementById('email');
+    const passwordInput = document.getElementById('password');
+
+    // Add input animation on focus
+    [emailInput, passwordInput].forEach(input => {
+      input.addEventListener('focus', function () {
+        this.parentElement.querySelector('label').style.color = '#667eea';
+      });
+
+      input.addEventListener('blur', function () {
+        this.parentElement.querySelector('label').style.color = '#1e293b';
+      });
+    });
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      let isValid = true;
+
+      // Reset errors
+      document.querySelectorAll('.error-message').forEach(err => err.classList.remove('show'));
+      document.querySelectorAll('input').forEach(input => input.style.borderColor = '#e2e8f0');
+
+      // Validate email
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(emailInput.value)) {
+        document.getElementById('emailError').classList.add('show');
+        emailInput.style.borderColor = '#ef4444';
+        isValid = false;
+      }
+
+      // Validate password
+      if (passwordInput.value.length < 6) {
+        document.getElementById('passwordError').classList.add('show');
+        passwordInput.style.borderColor = '#ef4444';
+        isValid = false;
+      }
+
+      if (isValid) {
+        const btn = form.querySelector('.submit-btn');
+        const originalText = btn.innerHTML;
+        btn.innerHTML = '<span>✓ جاري تسجيل الدخول...</span>';
+        btn.style.background = 'linear-gradient(135deg, #10b981 0%, #059669 100%)';
+        btn.style.pointerEvents = 'none';
+
+        setTimeout(() => {
+          showToast('تم تسجيل الدخول بنجاح! 🎉', 'success');
+          form.reset();
+          btn.innerHTML = originalText;
+          btn.style.background = 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)';
+          btn.style.pointerEvents = 'auto';
+        }, 1500);
+      }
+    });
+
+    // Clear error on input
+    emailInput.addEventListener('input', () => {
+      if (document.getElementById('emailError').classList.contains('show')) {
+        document.getElementById('emailError').classList.remove('show');
+        emailInput.style.borderColor = '#e2e8f0';
+      }
+    });
+
+    passwordInput.addEventListener('input', () => {
+      if (document.getElementById('passwordError').classList.contains('show')) {
+        document.getElementById('passwordError').classList.remove('show');
+        passwordInput.style.borderColor = '#e2e8f0';
+      }
+    });
+  </script>
+</body>
+
+</html>

@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>خدماتنا - شرنج برنج</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../css/style.css">
+    <style>
+        /* Service Card Hover Effects */
+        .service-card {
+            position: relative;
+            padding: 3rem 2.5rem;
+            text-align: center;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .service-card::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(102, 126, 234, 0.1), transparent);
+            transition: left 0.5s;
+        }
+
+        .service-card:hover::after {
+            left: 100%;
+        }
+
+        .service-icon {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 1.5rem;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.5rem;
+            color: white;
+            box-shadow: 0 10px 30px rgba(102, 126, 234, 0.3);
+            transition: all 0.4s;
+        }
+
+        .service-card:hover .service-icon {
+            transform: rotateY(360deg) scale(1.1);
+            box-shadow: 0 15px 40px rgba(102, 126, 234, 0.5);
+        }
+
+        .service-price {
+            display: inline-block;
+            margin-top: 1rem;
+            padding: 0.5rem 1.5rem;
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+            border-radius: 2rem;
+            font-weight: 700;
+            color: #667eea;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Navbar -->
+    <header class="navbar">
+        <div class="container nav-wrap">
+            <a class="brand" href="index.html">شرنج برنج</a>
+            <button class="nav-toggle" aria-label="القائمة">☰</button>
+            <nav class="nav">
+                <a href="index.html">الرئيسية</a>
+                <a href="about.html">من نحن</a>
+                <a href="services.html" class="active">خدماتنا</a>
+                <a href="articles.html">المقالات</a>
+                <a href="resources.html">المصادر</a>
+                <a href="contact.html">تواصل معنا</a>
+                <a href="login.html" class="btn btn-primary"
+                    style="padding: 0.5rem 1.5rem; color: white; margin-right: 1rem;">دخول</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="container hero-inner">
+            <h1>خدماتنا ودوراتنا</h1>
+            <p>نقدم مجموعة من الخدمات التعليمية والاستشارية في مجال الأمن السيبراني</p>
+        </div>
+    </section>
+
+    <!-- Services Grid -->
+    <section class="section">
+        <div class="container">
+            <div style="text-align: center; margin-bottom: 4rem;">
+                <h2>ماذا نقدم؟</h2>
+                <p style="color: var(--gray-500); font-size: 1.1rem;">خدمات شاملة لحماية عالمك الرقمي</p>
+            </div>
+
+            <div class="grid-3">
+                <div class="card service-card">
+                    <div class="service-icon">🎓</div>
+                    <h3>دورات تدريبية</h3>
+                    <p style="color: var(--gray-500); margin: 1rem 0;">
+                        دورات شاملة للمبتدئين والمحترفين تغطي أساسيات الأمن السيبراني، اختبار الاختراق، والتحقيق الجنائي
+                        الرقمي.
+                    </p>
+                    <div class="service-price">ابتداءً من 99$</div>
+                    <a href="contact.html" class="btn btn-primary"
+                        style="margin-top: 1.5rem; display: inline-block;">سجل الآن</a>
+                </div>
+
+                <div class="card service-card">
+                    <div class="service-icon">🛡️</div>
+                    <h3>استشارات أمنية</h3>
+                    <p style="color: var(--gray-500); margin: 1rem 0;">
+                        نقدم استشارات للشركات والأفراد لتقييم المخاطر الأمنية ووضع خطط حماية فعالة.
+                    </p>
+                    <div class="service-price">حسب المشروع</div>
+                    <a href="contact.html" class="btn btn-primary"
+                        style="margin-top: 1.5rem; display: inline-block;">اطلب استشارة</a>
+                </div>
+
+                <div class="card service-card">
+                    <div class="service-icon">🔍</div>
+                    <h3>فحص الثغرات</h3>
+                    <p style="color: var(--gray-500); margin: 1rem 0;">
+                        خدمة فحص المواقع والتطبيقات لاكتشاف الثغرات الأمنية وتقديم تقارير مفصلة للمعالجة.
+                    </p>
+                    <div class="service-price">ابتداءً من 199$</div>
+                    <a href="contact.html" class="btn btn-primary"
+                        style="margin-top: 1.5rem; display: inline-block;">احجز فحص</a>
+                </div>
+
+                <div class="card service-card">
+                    <div class="service-icon">🔧</div>
+                    <h3>ورش عمل</h3>
+                    <p style="color: var(--gray-500); margin: 1rem 0;">
+                        ورش عمل تفاعلية وعملية لتعلم مهارات محددة مثل استخدام أدوات Kali Linux وتحليل الشبكات.
+                    </p>
+                    <div class="service-price">مجاني - 49$</div>
+                    <a href="contact.html" class="btn btn-primary"
+                        style="margin-top: 1.5rem; display: inline-block;">انضم لورشة</a>
+                </div>
+
+                <div class="card service-card">
+                    <div class="service-icon">⚡</div>
+                    <h3>الاستجابة للحوادث</h3>
+                    <p style="color: var(--gray-500); margin: 1rem 0;">
+                        مساعدة فورية في حال تعرضك لاختراق أو هجوم إلكتروني لاستعادة البيانات وتأمين النظام.
+                    </p>
+                    <div class="service-price">متاح 24/7</div>
+                    <a href="contact.html" class="btn btn-primary"
+                        style="margin-top: 1.5rem; display: inline-block;">اتصل الآن</a>
+                </div>
+
+                <div class="card service-card">
+                    <div class="service-icon">📢</div>
+                    <h3>حملات توعية</h3>
+                    <p style="color: var(--gray-500); margin: 1rem 0;">
+                        تنظيم حملات توعية للمدارس والجامعات والشركات لرفع مستوى الوعي الأمني.
+                    </p>
+                    <div class="service-price">حسب الحجم</div>
+                    <a href="contact.html" class="btn btn-primary"
+                        style="margin-top: 1.5rem; display: inline-block;">نظم حملة</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="section" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); padding: 5rem 0;">
+        <div class="container" style="text-align: center;">
+            <h2 style="color: white; font-size: 2.5rem; margin-bottom: 1rem;">هل أنت مستعد للبدء؟</h2>
+            <p
+                style="color: rgba(255,255,255,0.9); font-size: 1.2rem; margin-bottom: 2rem; max-width: 600px; margin-left: auto; margin-right: auto;">
+                تواصل معنا الآن واحصل على استشارة مجانية لتحديد احتياجاتك الأمنية
+            </p>
+            <a href="contact.html" class="btn"
+                style="background: white; color: #667eea; font-weight: 800; padding: 1rem 2.5rem;">
+                تواصل معنا الآن
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="grid-3" style="text-align: right; margin-bottom: 2rem;">
+                <div>
+                    <h3 style="color: white; margin-bottom: 1rem;">شرنج برنج</h3>
+                    <p>منصتك الأولى للتوعية بالأمن السيبراني.</p>
+                </div>
+                <div>
+                    <h4 style="color: white; margin-bottom: 1rem;">روابط سريعة</h4>
+                    <ul style="line-height: 2.5;">
+                        <li><a href="about.html">من نحن</a></li>
+                        <li><a href="services.html">الخدمات</a></li>
+                        <li><a href="contact.html">تواصل معنا</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 style="color: white; margin-bottom: 1rem;">تواصل معنا</h4>
+                    <p>Email: info@shrenjprenj.com</p>
+                    <p>Telegram: @shrenjprenj2</p>
+                </div>
+            </div>
+            <p style="border-top: 1px solid var(--gray-800); padding-top: 2rem;">© 2025 شرنج برنج — جميع الحقوق محفوظة
+            </p>
+        </div>
+    </footer><!-- -->
+
+    <script src="../js/main.js"></script>
+</body>
+
+</html>

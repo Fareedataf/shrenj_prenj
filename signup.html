@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>إنشاء حساب - شرنج برنج</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../css/style.css">
+  <link rel="stylesheet" href="../css/auth.css">
+  <style>
+    /* Compact Login Page Styling */
+    .login-section {
+      min-height: calc(100vh - var(--header-height) - 200px);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 3rem 0;
+      background: linear-gradient(135deg, rgba(102, 126, 234, 0.05), rgba(118, 75, 162, 0.05));
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Subtle Background Effects */
+    .login-section::before,
+    .login-section::after {
+      content: '';
+      position: absolute;
+      border-radius: 50%;
+      opacity: 0.6;
+    }
+
+    .login-section::before {
+      width: 300px;
+      height: 300px;
+      background: radial-gradient(circle, rgba(102, 126, 234, 0.1) 0%, transparent 70%);
+      top: -150px;
+      right: -150px;
+      animation: float 8s ease-in-out infinite;
+    }
+
+    .login-section::after {
+      width: 250px;
+      height: 250px;
+      background: radial-gradient(circle, rgba(118, 75, 162, 0.1) 0%, transparent 70%);
+      bottom: -125px;
+      left: -125px;
+      animation: float 10s ease-in-out infinite reverse;
+    }
+
+    /* Compact Login Container */
+    .login-container {
+      position: relative;
+      z-index: 10;
+      width: 90%;
+      max-width: 420px;
+      animation: slideInUp 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    }
+
+    @keyframes slideInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px) scale(0.95);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    /* Elegant Login Card */
+    .login-card {
+      background: white;
+      backdrop-filter: blur(20px);
+      border-radius: 1.5rem;
+      padding: 2.5rem 2rem;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(102, 126, 234, 0.1);
+      position: relative;
+      overflow: hidden;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .login-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 30px 80px rgba(0, 0, 0, 0.15), 0 0 0 1px rgba(102, 126, 234, 0.2);
+    }
+
+    .login-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background: linear-gradient(to right, #667eea, #764ba2, #f093fb);
+    }
+
+    /* Compact Brand */
+    .login-brand {
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .login-brand h2 {
+      font-size: 2rem;
+      font-weight: 900;
+      background: linear-gradient(135deg, #667eea, #764ba2);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 0.5rem;
+    }
+
+    .login-brand h2::after {
+      display: none;
+    }
+
+    .login-brand p {
+      color: #64748b;
+      font-size: 0.95rem;
+      font-weight: 500;
+    }
+
+    /* Compact Form */
+    .form-group {
+      margin-bottom: 1.5rem;
+      position: relative;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 700;
+      color: #1e293b;
+      font-size: 0.9rem;
+    }
+
+    .form-group input {
+      width: 100%;
+      padding: 0.85rem 1rem 0.85rem 2.75rem;
+      border: 2px solid #e2e8f0;
+      border-radius: 0.75rem;
+      font-size: 0.95rem;
+      font-family: inherit;
+      background: #f8fafc;
+      transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+    }
+
+    .form-group input:focus {
+      outline: none;
+      border-color: #667eea;
+      background: white;
+      box-shadow: 0 0 0 4px rgba(102, 126, 234, 0.1);
+      transform: translateY(-2px);
+    }
+
+    .form-group input:focus~.input-icon {
+      color: #667eea;
+      transform: scale(1.15) rotate(5deg);
+    }
+
+    /* Input Icons */
+    .input-icon {
+      position: absolute;
+      right: 0.85rem;
+      top: 2.4rem;
+      color: #94a3b8;
+      font-size: 1.2rem;
+      transition: all 0.3s;
+      pointer-events: none;
+    }
+
+    /* Compact Options */
+    .form-options {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.5rem;
+      font-size: 0.85rem;
+    }
+
+    .remember-me {
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+      cursor: pointer;
+    }
+
+    .remember-me input[type="checkbox"] {
+      width: 16px;
+      height: 16px;
+      cursor: pointer;
+      accent-color: #667eea;
+    }
+
+    .forgot-password {
+      color: #667eea;
+      font-weight: 600;
+      transition: all 0.3s;
+    }
+
+    .forgot-password:hover {
+      color: #764ba2;
+      text-decoration: underline;
+    }
+
+    /* Compact Submit Button */
+    .submit-btn {
+      width: 100%;
+      padding: 1rem;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      border: none;
+      border-radius: 0.75rem;
+      font-size: 1rem;
+      font-weight: 800;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+      box-shadow: 0 8px 20px rgba(102, 126, 234, 0.3);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .submit-btn::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 0;
+      height: 0;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.3);
+      transform: translate(-50%, -50%);
+      transition: width 0.5s, height 0.5s;
+    }
+
+    .submit-btn:hover::before {
+      width: 300px;
+      height: 300px;
+    }
+
+    .submit-btn:hover {
+      transform: translateY(-2px) scale(1.02);
+      box-shadow: 0 12px 30px rgba(102, 126, 234, 0.5);
+    }
+
+    /* Compact Divider */
+    .divider {
+      text-align: center;
+      margin: 1.5rem 0;
+      position: relative;
+    }
+
+    .divider::before,
+    .divider::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      width: 42%;
+      height: 1px;
+      background: #e2e8f0;
+    }
+
+    .divider::before {
+      right: 0;
+    }
+
+    .divider::after {
+      left: 0;
+    }
+
+    .divider span {
+      background: white;
+      padding: 0 0.75rem;
+      color: #94a3b8;
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+
+    /* Compact Social Login */
+    .social-login {
+      display: flex;
+      gap: 0.75rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .social-btn {
+      flex: 1;
+      padding: 0.75rem;
+      border: 2px solid #e2e8f0;
+      border-radius: 0.75rem;
+      background: white;
+      cursor: pointer;
+      transition: all 0.3s;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: #475569;
+    }
+
+    .social-btn:hover {
+      border-color: #667eea;
+      background: #f8fafc;
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+    }
+
+    /* Sign Up Link */
+    .signup-link {
+      text-align: center;
+      color: #64748b;
+      font-size: 0.9rem;
+    }
+
+    .signup-link a {
+      color: #667eea;
+      font-weight: 700;
+      transition: all 0.3s;
+    }
+
+    .signup-link a:hover {
+      color: #764ba2;
+      text-decoration: underline;
+    }
+
+    /* Error Message */
+    .error-message {
+      color: #ef4444;
+      font-size: 0.8rem;
+      margin-top: 0.4rem;
+      font-weight: 600;
+      display: none;
+    }
+
+    .error-message.show {
+      display: block;
+      animation: shake 0.4s;
+    }
+
+    @keyframes shake {
+
+      0%,
+      100% {
+        transform: translateX(0);
+      }
+
+      25% {
+        transform: translateX(-8px);
+      }
+
+      75% {
+        transform: translateX(8px);
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- Navbar -->
+  <header class="navbar">
+    <div class="container nav-wrap">
+      <a class="brand" href="index.html">شرنج برنج</a>
+      <button class="nav-toggle" aria-label="القائمة">☰</button>
+      <nav class="nav">
+        <a href="index.html">الرئيسية</a>
+        <a href="about.html">من نحن</a>
+        <a href="services.html">خدماتنا</a>
+        <a href="articles.html">المقالات</a>
+        <a href="resources.html">المصادر</a>
+        <a href="contact.html">تواصل معنا</a>
+        <a href="login.html" class="active btn btn-primary"
+          style="padding: 0.5rem 1.5rem; color: white; margin-right: 1rem;">دخول</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Login Section -->
+  <section class="login-section">
+    <div class="login-container">
+      <div class="login-card">
+        <!-- Brand -->
+        <div class="login-brand">
+          <h2>إنشاء حساب جديد</h2>
+          <p>انضم إلينا وابدأ رحلتك في الأمن السيبراني</p>
+        </div>
+
+        <!-- Login Form -->
+        <form id="signupForm">
+          <div class="form-group">
+            <label for="fullname">الاسم الكامل</label>
+            <input type="text" id="fullname" name="fullname" placeholder="الاسم الثلاثي" required>
+            <span class="input-icon">👤</span>
+            <div class="error-message" id="nameError">الرجاء إدخال اسمك الكامل (3 أحرف على الأقل)</div>
+          </div>
+
+          <div class="form-group">
+            <label for="email">البريد الإلكتروني</label>
+            <input type="email" id="email" name="email" placeholder="name@example.com" required>
+            <span class="input-icon">✉</span>
+            <div class="error-message" id="emailError">الرجاء إدخال بريد إلكتروني صحيح</div>
+          </div>
+
+          <div class="form-group">
+            <label for="password">كلمة المرور</label>
+            <input type="password" id="password" name="password" placeholder="••••••••" required>
+            <span class="input-icon">🔒</span>
+            <div class="error-message" id="passwordError">كلمة المرور يجب أن تكون 6 أحرف على الأقل</div>
+          </div>
+
+          <div class="form-group">
+            <label for="confirmPassword">تأكيد كلمة المرور</label>
+            <input type="password" id="confirmPassword" name="confirmPassword" placeholder="••••••••" required>
+            <span class="input-icon">🔐</span>
+            <div class="error-message" id="confirmError">كلمتا المرور غير متطابقتين</div>
+          </div>
+
+          <div class="form-options" style="display: none;">
+            <label class="remember-me">
+              <input type="checkbox" id="remember">
+              <span>تذكرني</span>
+            </label>
+            <a href="#" class="forgot-password">نسيت كلمة المرور؟</a>
+          </div>
+
+          <button type="submit" class="submit-btn">
+            <span>إنشاء حساب</span>
+          </button>
+        </form>
+
+        <!-- Login Link -->
+        <div class="signup-link">
+          لديك حساب بالفعل؟ <a href="login.html">سجّل الدخول</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="grid-3" style="text-align: right; margin-bottom: 2rem;">
+        <div>
+          <h3 style="color: white; margin-bottom: 1rem;">شرنج برنج</h3>
+          <p>منصتك الأولى للتوعية بالأمن السيبراني.</p>
+        </div>
+        <div>
+          <h4 style="color: white; margin-bottom: 1rem;">روابط سريعة</h4>
+          <ul style="line-height: 2.5;">
+            <li><a href="about.html">من نحن</a></li>
+            <li><a href="services.html">الخدمات</a></li>
+            <li><a href="contact.html">تواصل معنا</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 style="color: white; margin-bottom: 1rem;">تواصل معنا</h4>
+          <p>Email: info@shrenjprenj.com</p>
+          <p>Telegram: @shrenjprenj2</p>
+        </div>
+      </div>
+      <p style="border-top: 1px solid var(--gray-800); padding-top: 2rem;">© 2025 شرنج برنج — جميع الحقوق محفوظة</p>
+    </div>
+  </footer>
+
+  <script src="../js/main.js"></script>
+  <script>
+    // Enhanced Form Validation
+    const form = document.getElementById('loginForm');
+    const emailInput = document.getElementById('email');
+    const passwordInput = document.getElementById('password');
+
+    // Add input animation on focus
+    [emailInput, passwordInput].forEach(input => {
+      input.addEventListener('focus', function () {
+        this.parentElement.querySelector('label').style.color = '#667eea';
+      });
+
+      input.addEventListener('blur', function () {
+        this.parentElement.querySelector('label').style.color = '#1e293b';
+      });
+    });
+
+    form.addEventListener('submit', (e) => {
+      e.preventDefault();
+      let isValid = true;
+
+      // Reset errors
+      document.querySelectorAll('.error-message').forEach(err => err.classList.remove('show'));
+      document.querySelectorAll('input').forEach(input => input.style.borderColor = '#e2e8f0');
+
+      // Validate email
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailRegex.test(emailInput.value)) {
+        document.getElementById('emailError').classList.add('show');
+        emailInput.style.borderColor = '#ef4444';
+        isValid = false;
+      }
+
+      // Validate password
+      if (passwordInput.value.length < 6) {
+        document.getElementById('passwordError').classList.add('show');
+        passwordInput.style.borderColor = '#ef4444';
+        isValid = false;
+      }
+
+      if (isValid) {
+        const btn = form.querySelector('.submit-btn');
+        const originalText = btn.innerHTML;
+        btn.innerHTML = '<span>✓ جاري تسجيل الدخول...</span>';
+        btn.style.background = 'linear-gradient(135deg, #10b981 0%, #059669 100%)';
+        btn.style.pointerEvents = 'none';
+
+        setTimeout(() => {
+          showToast('تم تسجيل الدخول بنجاح! 🎉', 'success');
+          form.reset();
+          btn.innerHTML = originalText;
+          btn.style.background = 'linear-gradient(135deg, #667eea 0%, #764ba2 100%)';
+          btn.style.pointerEvents = 'auto';
+        }, 1500);
+      }
+    });
+
+    // Clear error on input
+    emailInput.addEventListener('input', () => {
+      if (document.getElementById('emailError').classList.contains('show')) {
+        document.getElementById('emailError').classList.remove('show');
+        emailInput.style.borderColor = '#e2e8f0';
+      }
+    });
+
+    passwordInput.addEventListener('input', () => {
+      if (document.getElementById('passwordError').classList.contains('show')) {
+        document.getElementById('passwordError').classList.remove('show');
+        passwordInput.style.borderColor = '#e2e8f0';
+      }
+    });
+  </script>
+</body>
+
+</html>
